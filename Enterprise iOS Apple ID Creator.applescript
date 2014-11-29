@@ -1,5 +1,5 @@
 (*
-code to find all elements on iTunes page, for use with "verifyPage()"
+code to find all elements on iTunes page, for use with "verifyPage(gpg)"
 
 tell application "System Events"
 	set elementCount to count of every UI element of UI element 1 of scroll area 3 of window 1 of application process "iTunes"
@@ -229,7 +229,7 @@ on MainMagic(userDroppedFile, droppedFile)
 					
 					delay 1 --Fix so iTunes is properly tested for, instead of just manually delaying
 					
-					GetItunesStatusUntillLcd("Does Not Match", "Accessing iTunes Store…", 4, "times. Check for:", 120, "intervals of", 0.25, "seconds") ------------------------Wait for iTunes to open (if closed) and the iBooks page to load
+					GetItunesStatusUntillLcd("Does Not Match", "Accessing iTunes Store√â", 4, "times. Check for:", 120, "intervals of", 0.25, "seconds") ------------------------Wait for iTunes to open (if closed) and the iBooks page to load
 					
 					SignOutItunesAccount() ---------------------------------------------------------------------------------------------------------------------------------------------------------Signout Apple ID that is currently signed in (if any)
 					
@@ -278,7 +278,7 @@ on MainMagic(userDroppedFile, droppedFile)
 				
 				--Fix for multiple positive outcomes
 				if itunesVersionIsSupported is false then --If the script was run against an unsupported version of iTunes...
-					if scriptAction is "Continue" then --…And it wasn't aborted...
+					if scriptAction is "Continue" then --√âAnd it wasn't aborted...
 						if button returned of (display dialog "Would you like to add iTunes Version " & itunesVersion & " to the list of supported iTunes versions?" buttons {"Yes", "No"} default button "No") is "Yes" then --...then ask the user if they want to add the current version of iTunes to the supported versions list
 							set supportedItunesVersions to supportedItunesVersions & itunesVersion
 							display dialog "iTunes version " & itunesVersion & " succesfully added to list of supported versions."
@@ -482,7 +482,7 @@ on findInList(matchList, listContents)
 		end repeat
 		return {findState, findLocation} as list
 	on error
-		display dialog "Hmm… Well, I was looking for something in the file, and something went wrong." buttons "Bummer"
+		display dialog "Hmm√â Well, I was looking for something in the file, and something went wrong." buttons "Bummer"
 		return 0
 	end try
 end findInList
@@ -577,7 +577,7 @@ on verifyPage(expectedElementString, expectedElementLocation, expectedElementCou
 	tell application "System Events"
 		
 		set checkFrequency to 0.25 --How often (in seconds) the iTunes LCD will be check to see if iTunes is busy loading the page
-		my GetItunesStatusUntillLcd("Does Not Match", "Accessing iTunes Store…", 4, "times. Check for:", (verificationTimeout * (1 / checkFrequency)), "intervals of", checkFrequency, "seconds")
+		my GetItunesStatusUntillLcd("Does Not Match", "Accessing iTunes Store√â", 4, "times. Check for:", (verificationTimeout * (1 / checkFrequency)), "intervals of", checkFrequency, "seconds")
 		
 		set elementCount to count of every UI element of UI element 1 of scroll area 3 of window 1 of application process "iTunes"
 		
@@ -954,7 +954,7 @@ on ProvidePaymentDetails(userFirstName, userLastName, addressStreet, addressCity
 		
 		--Wait for the page to change after selecting payment type
 		set checkFrequency to 0.25 --How often (in seconds) the iTunes LCD will be checked to see if iTunes is busy loading the page
-		GetItunesStatusUntillLcd("Does Not Match", "Accessing iTunes Store…", 4, "times. Check for:", (netDelay * (1 / checkFrequency)), "intervals of", checkFrequency, "seconds")
+		GetItunesStatusUntillLcd("Does Not Match", "Accessing iTunes Store√â", 4, "times. Check for:", (netDelay * (1 / checkFrequency)), "intervals of", checkFrequency, "seconds")
 		
 		tell application "System Events"
 			try
