@@ -25,7 +25,7 @@ end tell
 
 *)
 
---TO DO:
+--TO DO:Privecy
 
 --write itunes running check
 --write file output section for account status column
